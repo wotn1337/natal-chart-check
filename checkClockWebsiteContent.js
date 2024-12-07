@@ -4,6 +4,8 @@ import * as cheerio from "cheerio";
 
 export async function isTimeUpdated() {
   try {
+    console.log("TIME_WEBSITE_URL", TIME_WEBSITE_URL);
+
     const { data } = await axios.get(TIME_WEBSITE_URL);
     const time = getClockElementText(data);
 
