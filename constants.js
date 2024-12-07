@@ -23,4 +23,4 @@ export const EMAIL_CONFIG = {
     pass: process.env.EMAIL_PASS,
   },
 };
-export const EMAIL_RECIPIENT = process.env.EMAIL_RECIPIENT;
+export const EMAIL_RECIPIENTS = process.env.EMAIL_RECIPIENTS;
