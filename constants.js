@@ -1,4 +1,5 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env" });
 
 export const WEBSITE_URL = process.env.WEBSITE_URL;
 export const SHOT_DATE_TITLE = "СЪЁМКИ НОВЫХ ВЫПУСКОВ";
