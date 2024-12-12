@@ -1,0 +1,11 @@
+<mj-button
+  background-color="#f5cc86"
+  color="#001122"
+  href="{{TICKETS_HREF}}"
+  width="100%"
+  border-radius="8px"
+  font-size="12px"
+  font-family="Montserrat, sans-serif"
+>
+  {{NAME}} | {{TIME}}
+</mj-button>

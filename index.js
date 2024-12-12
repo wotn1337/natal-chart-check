@@ -1,14 +1,14 @@
 import { isShotDateUpdated } from "./checkWebsiteContent.js";
 import { sendEmail } from "./sendEmail.js";
-import { WEBSITE_URL } from "./constants.js";
+import { getNatalChartNotifyEmailContent } from "./natalChartNotifyEmail.js";
 
-const dateWasUpdated = await isShotDateUpdated();
+const siteParsedData = isShotDateUpdated();
 
-if (dateWasUpdated) {
+if (!!siteParsedData) {
   const subject = "Натальная карта!";
-  const text = `Дата съемки обновилась.\nНадо покупать билеты.\n${WEBSITE_URL}`;
+  const html = getNatalChartNotifyEmailContent(siteParsedData);
 
-  sendEmail(subject, text);
+  sendEmail(subject, html, "НАТАЛЬНАЯ КАРТА");
 } else {
   console.log("Обновлений нет");
 }

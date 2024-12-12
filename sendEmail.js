@@ -1,14 +1,14 @@
 import { EMAIL_CONFIG, EMAIL_RECIPIENTS } from "./constants.js";
 import nodemailer from "nodemailer";
 
-export async function sendEmail(subject, text) {
+export async function sendEmail(subject, html, from = "Notify") {
   const transporter = nodemailer.createTransport(EMAIL_CONFIG);
 
   await transporter.sendMail({
-    from: `"НАТАЛЬНАЯ КАРТА" ${EMAIL_CONFIG.auth.user}`,
+    from: `"${from}" ${EMAIL_CONFIG.auth.user}`,
     to: EMAIL_RECIPIENTS,
     subject,
-    text,
+    html,
   });
 
   console.log("Уведомление отправлено");
