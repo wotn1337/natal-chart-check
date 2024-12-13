@@ -34,6 +34,7 @@
               font-size: 24px;
               color: black;
               height: 50px;
+              margin-bottom: 20px;
             "
           >
             <tr>
@@ -41,8 +42,8 @@
                 <span>{{DATE}}</span>
                 <span
                   style="
-                    background-color: red;
-                    padding: 8px;
+                    background-color: {{WEEKDAY_COLOR}};
+                    padding: 5px 8px 8px;
                     color: white;
                     border-radius: 8px;
                   "

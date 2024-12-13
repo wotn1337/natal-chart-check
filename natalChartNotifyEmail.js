@@ -1,7 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
-import { WEBSITE_URL } from "./constants.js";
+import { WEBSITE_URL, WEEK_DAY_COLOR, WEEKEND_dAY_COLOR } from "./constants.js";
 import mjml2html from "mjml";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -25,6 +25,7 @@ export function getNatalChartNotifyEmailContent({
     WEEK_DAY: weekDay,
     IMG: img,
     GUESTS: getGuestsMjml(guests),
+    WEEKDAY_COLOR: getDayBackgroundColor(weekDay),
   };
   const emailMjmlContent = insertVariablesInMjml(
     templateMjmlContent,
@@ -63,4 +64,16 @@ function insertVariablesInMjml(mjml, variables) {
     result = result.replace(`{{${key}}}`, value);
   });
   return result;
+}
+
+function getDayBackgroundColor(day) {
+  if (isWeekend(day)) {
+    return WEEKEND_dAY_COLOR;
+  }
+
+  return WEEK_DAY_COLOR;
+}
+
+function isWeekend(day) {
+  return day === "сб" || day === "вс";
 }

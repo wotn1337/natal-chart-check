@@ -21,3 +21,6 @@ export const EMAIL_CONFIG = {
   },
 };
 export const EMAIL_RECIPIENTS = process.env.EMAIL_RECIPIENTS;
+
+export const WEEK_DAY_COLOR = "black";
+export const WEEKEND_dAY_COLOR = "red";
