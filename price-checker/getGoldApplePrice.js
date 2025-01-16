@@ -1,21 +1,19 @@
-import axios from "axios";
-import * as cheerio from "cheerio";
+import { chromium } from "playwright";
 
 export default async function getPrice() {
-  const { data } = await axios.get(
-    "https://goldapple.ru/89310800015-dercos-aminexil-intensive-5",
-    {
-      headers: {
-        "Content-Type": "text/html",
-      },
-    }
+  const browser = await chromium.launch({ headless: true });
+  const context = await browser.newContext();
+  const page = await context.newPage();
+
+  await page.goto(
+    "https://goldapple.ru/89310800015-dercos-aminexil-intensive-5"
   );
-  const $ = cheerio.load(data);
+  const textContent = await page.$eval('meta[itemprop="price"]', (el) =>
+    el.getAttribute("content")
+  );
+  await browser.close();
 
-  const item = $('div[itemprop="priceSpecification"]');
-  const priceText = item.first().text().split("₽")[0].trim().replace(" ", "");
-
-  return Number(priceText);
+  return textContent;
 }
 
 console.log(await getPrice());
