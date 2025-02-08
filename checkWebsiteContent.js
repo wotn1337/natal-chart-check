@@ -1,7 +1,7 @@
-import { WEBSITE_URL, SHOT_DATE_TITLE, OLD_DATE_STRING } from "./constants.js";
 import axios from "axios";
 import * as cheerio from "cheerio";
 import moment from "moment";
+import { OLD_DATE_STRING, SHOT_DATE_TITLE, WEBSITE_URL } from "./constants.js";
 
 const { data } = await axios.get(WEBSITE_URL);
 const $ = cheerio.load(data);
@@ -12,7 +12,7 @@ export function isShotDateUpdated() {
     const weekDay = getDateWeekDay(date);
     const img = getImageUrl();
     const guests = getGuestItems();
-    const isNewDate = date !== OLD_DATE_STRING;
+    const isNewDate = date && date !== OLD_DATE_STRING;
 
     if (isNewDate) {
       return { date, weekDay, img, guests };
